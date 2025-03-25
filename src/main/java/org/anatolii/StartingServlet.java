@@ -13,9 +13,9 @@ import java.io.IOException;
 
 @WebServlet(name = "StartingServlet", value = "/start")
 public class StartingServlet extends HttpServlet {
-    public static final Logger logger = LogManager.getLogger(StartingServlet.class);
+    protected static final Logger logger = LogManager.getLogger(StartingServlet.class);
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession(true);
         String userName = request.getParameter("name");
         if (userName == null) {
@@ -30,5 +30,6 @@ public class StartingServlet extends HttpServlet {
         session.setAttribute("user",userName);
         logger.info("New game started by user: {}", userName);
         response.sendRedirect("/prestart.jsp");
+        return;
     }
 }

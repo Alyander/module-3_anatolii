@@ -10,7 +10,7 @@ import java.io.IOException;
 @WebServlet(name = "LogicServlet", value="/logic")
 public class LogicServlet extends HttpServlet {
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
         String answer = req.getParameter("answer");;
         int question = (int)session.getAttribute("question");
