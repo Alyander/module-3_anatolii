@@ -18,6 +18,9 @@ public class StartingServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession(true);
         String userName = request.getParameter("name");
+        if (userName == null) {
+            logger.warn("User name is null");
+        }
         session.setAttribute("questions", DataClass.questions[0]);
         session.setAttribute("answers", DataClass.answers[0]);
         session.setAttribute("question", 0);
@@ -25,7 +28,7 @@ public class StartingServlet extends HttpServlet {
         session.setAttribute("isWin", false);
         session.setAttribute("Score", 0);
         session.setAttribute("user",userName);
-        logger.info("New game started by user: " + userName);
+        logger.info("New game started by user: {}", userName);
         response.sendRedirect("/prestart.jsp");
     }
 }
