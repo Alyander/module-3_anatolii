@@ -20,12 +20,15 @@ public class LogicServlet extends HttpServlet {
             if (question == DataClass.questions.length) {
                 session.setAttribute("isWin", true);
             } else {
-                session.setAttribute("question", question+1);
-                session.setAttribute("questions", DataClass.questions[question+1]);
-                session.setAttribute("answers", DataClass.answers[question+1]);
+                int questionCount = question+1;
+                session.setAttribute("question", questionCount);
+                session.setAttribute("questions", DataClass.questions[questionCount]);
+                session.setAttribute("answers", DataClass.answers[questionCount]);
+                resp.sendRedirect("/quest.jsp");
             }
         } else {
             session.setAttribute("isLose", true);
+            
         }
     }
 }
