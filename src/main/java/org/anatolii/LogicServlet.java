@@ -17,8 +17,9 @@ public class LogicServlet extends HttpServlet {
         if (DataClass.answersCorrections[question][Integer.parseInt(answer)]) {
             int score = (int) session.getAttribute("Score");
             session.setAttribute("Score", score + 1);
-            if (question == DataClass.questions.length) {
+            if (question == DataClass.questions.length-1) {
                 session.setAttribute("isWin", true);
+                resp.sendRedirect("/result.jsp");
             } else {
                 int questionCount = question+1;
                 session.setAttribute("question", questionCount);
@@ -28,7 +29,7 @@ public class LogicServlet extends HttpServlet {
             }
         } else {
             session.setAttribute("isLose", true);
-            
+            resp.sendRedirect("/result.jsp");
         }
     }
 }

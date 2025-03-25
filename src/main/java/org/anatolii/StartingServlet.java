@@ -14,14 +14,14 @@ public class StartingServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession(true);
+        String userName = request.getParameter("name");
         session.setAttribute("questions", DataClass.questions[0]);
         session.setAttribute("answers", DataClass.answers[0]);
         session.setAttribute("question", 0);
         session.setAttribute("isLose", false);
         session.setAttribute("isWin", false);
         session.setAttribute("Score", 0);
-        session.setAttribute("User", request.getParameter("name"));
+        session.setAttribute("user",userName);
         response.sendRedirect("/prestart.jsp");
-
     }
 }
