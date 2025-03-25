@@ -21,7 +21,7 @@ public class StartingServlet extends HttpServlet {
         session.setAttribute("isWin", false);
         session.setAttribute("Score", 0);
         session.setAttribute("User", request.getParameter("name"));
-        response.sendRedirect("/quest.jsp");
+        response.sendRedirect("/prestart.jsp");
 
     }
 }
